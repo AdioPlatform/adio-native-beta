@@ -38,12 +38,16 @@
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
+		B49C6D1521E96C8000A84D9F /* AdioManager+AudioSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49C6D1421E96C8000A84D9F /* AdioManager+AudioSession.swift */; };
 		B4B0CA6321E6BF16003F5830 /* AdioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B0CA6221E6BF16003F5830 /* AdioManager.swift */; };
 		B4B0CA8A21E6BF8F003F5830 /* AdioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B0CA8921E6BF8F003F5830 /* AdioManager.m */; };
 		B4B0CA9821E6C02E003F5830 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B0CA9721E6C02E003F5830 /* DownloadManager.swift */; };
 		B4B0CA9A21E6C229003F5830 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B0CA9921E6C229003F5830 /* Download.swift */; };
 		B4B0CA9C21E6C246003F5830 /* Clip.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B0CA9B21E6C246003F5830 /* Clip.swift */; };
 		B4B0CA9E21E6C6A4003F5830 /* AdioManager+URLSessionDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B0CA9D21E6C6A4003F5830 /* AdioManager+URLSessionDelegates.swift */; };
+		B4EF1D7D21E6F4A30084CE74 /* AdioManager+Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EF1D7C21E6F4A30084CE74 /* AdioManager+Player.swift */; };
+		B4EF1DD121E81AF80084CE74 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EF1DD021E81AF80084CE74 /* Logger.swift */; };
+		B4EF1DD321E838BB0084CE74 /* AudioSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EF1DD221E838BB0084CE74 /* AudioSession.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -349,6 +353,7 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
+		B49C6D1421E96C8000A84D9F /* AdioManager+AudioSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdioManager+AudioSession.swift"; sourceTree = "<group>"; };
 		B4B0CA6121E6BF16003F5830 /* AdioManager-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AdioManager-Bridging-Header.h"; sourceTree = "<group>"; };
 		B4B0CA6221E6BF16003F5830 /* AdioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdioManager.swift; sourceTree = "<group>"; };
 		B4B0CA8921E6BF8F003F5830 /* AdioManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdioManager.m; sourceTree = "<group>"; };
@@ -356,6 +361,9 @@
 		B4B0CA9921E6C229003F5830 /* Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
 		B4B0CA9B21E6C246003F5830 /* Clip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clip.swift; sourceTree = "<group>"; };
 		B4B0CA9D21E6C6A4003F5830 /* AdioManager+URLSessionDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdioManager+URLSessionDelegates.swift"; sourceTree = "<group>"; };
+		B4EF1D7C21E6F4A30084CE74 /* AdioManager+Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdioManager+Player.swift"; sourceTree = "<group>"; };
+		B4EF1DD021E81AF80084CE74 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		B4EF1DD221E838BB0084CE74 /* AudioSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -508,6 +516,10 @@
 				B4B0CA9921E6C229003F5830 /* Download.swift */,
 				B4B0CA9B21E6C246003F5830 /* Clip.swift */,
 				B4B0CA9D21E6C6A4003F5830 /* AdioManager+URLSessionDelegates.swift */,
+				B4EF1D7C21E6F4A30084CE74 /* AdioManager+Player.swift */,
+				B4EF1DD021E81AF80084CE74 /* Logger.swift */,
+				B4EF1DD221E838BB0084CE74 /* AudioSession.swift */,
+				B49C6D1421E96C8000A84D9F /* AdioManager+AudioSession.swift */,
 			);
 			name = AdioManager;
 			sourceTree = "<group>";
@@ -1136,10 +1148,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4EF1DD321E838BB0084CE74 /* AudioSession.swift in Sources */,
 				B4B0CA9E21E6C6A4003F5830 /* AdioManager+URLSessionDelegates.swift in Sources */,
 				B4B0CA8A21E6BF8F003F5830 /* AdioManager.m in Sources */,
+				B4EF1D7D21E6F4A30084CE74 /* AdioManager+Player.swift in Sources */,
 				B4B0CA9C21E6C246003F5830 /* Clip.swift in Sources */,
 				B4B0CA9821E6C02E003F5830 /* DownloadManager.swift in Sources */,
+				B49C6D1521E96C8000A84D9F /* AdioManager+AudioSession.swift in Sources */,
+				B4EF1DD121E81AF80084CE74 /* Logger.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				B4B0CA9A21E6C229003F5830 /* Download.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,

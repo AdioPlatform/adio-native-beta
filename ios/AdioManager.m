@@ -24,4 +24,15 @@ RCT_EXTERN_METHOD(downloadAllClips)
 
 RCT_EXTERN_METHOD(downloadClip:(NSString *) id)
 
+RCT_EXTERN_METHOD(setSeekTime:(float *) seekTime)
+
+
+RCT_EXTERN_METHOD(play)
+RCT_EXTERN_METHOD(stop)
+
+RCT_EXTERN_METHOD(createAudioSession: (RCTPromiseResolveBlock)resolve
+                  rejecter: (RCTPromiseRejectBlock)reject)
+
+RCT_EXTERN_METHOD(destroyAudioSession: (RCTPromiseResolveBlock)resolve
+                  rejecter: (RCTPromiseRejectBlock)reject)
 @end

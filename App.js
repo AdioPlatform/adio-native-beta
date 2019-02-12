@@ -9,6 +9,7 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, Button } from 'react-native';
 import { AdioManager, AdioManagerProvider } from './AdioManager';
+import TestApp from './TestApp';
 
 const audioUrl =
   'https://adio-clips-dev.s3.amazonaws.com/projects/62775440-a642-11e8-905c-073edd0e1352/clips/6c6f5c90-a642-11e8-8aff-45abddd89f45.wav';
@@ -26,18 +27,34 @@ const file2 = {
 };
 
 export default class App extends Component {
+  state = {
+    testing: false,
+  };
+
   render() {
     return (
       <View style={styles.container}>
-        <AdioManagerProvider clips={[file]}>
+        <Button
+          onPress={() =>
+            this.setState((state) => ({
+              testing: !state.testing,
+            }))
+          }
+          title={this.state.testing ? 'Stop Testing' : 'Start Testing'}
+        />
+        {this.state.testing && (
+          <AdioManagerProvider>
+            <TestApp />
+          </AdioManagerProvider>
+        )}
+        {/* <AdioManagerProvider clips={[file]}>
           <AdioManager>
-            {({ getState, downloadAllClips }) => {
+            {({ getState, addClips, play }) => {
               const state = getState();
-
-              console.log(state);
 
               return (
                 <View>
+                  <Text>{state.audioSessionStatus || 'NOTHING'}</Text>
                   {state.clips.map((clip) => {
                     const isDownloading = state.downloadingClips[clip.id];
 
@@ -53,12 +70,22 @@ export default class App extends Component {
                       </View>
                     );
                   })}
-                  <Button onPress={downloadAllClips} title="Download" />
+
+                  {state.audioSessionStatus && (
+                    <Button
+                      onPress={() => addClips([file])}
+                      title="Add Clips"
+                    />
+                  )}
+
+                  {state.audioSessionStatus && (
+                    <Button onPress={play} title="Play" />
+                  )}
                 </View>
               );
             }}
           </AdioManager>
-        </AdioManagerProvider>
+        </AdioManagerProvider> */}
       </View>
     );
   }

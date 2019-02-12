@@ -8,24 +8,15 @@ const { Consumer: AdioManager, Provider } = createContext();
 
 export { AdioManager };
 
-const updateClip = (clip) => (state) => {
-  const clipIndex = state.clips.findIndex(({ id }) => {
-    return id === clip.id;
-  });
-
-  const clips = [
-    ...state.clips.slice(0, clipIndex),
-    clip,
-    ...state.clips.slice(clipIndex + 1, state.clips.length),
-  ];
-
-  return { clips };
-};
+export const withAudioManager = (Comp) => (
+  <AdioManager>{(props) => <Comp {...props} />}</AdioManager>
+);
 
 export class AdioManagerProvider extends Component {
   state = {
-    clips: [],
     downloadingClips: {},
+    audioSessionStatus: null,
+    time: 0,
   };
 
   constructor(props) {
@@ -33,13 +24,14 @@ export class AdioManagerProvider extends Component {
 
     this.providerValue = {
       getState: this.getState,
-      downloadClip: this.downloadClip,
-      downloadAllClips: this.downloadAllClips,
+      play: this.play,
+      stop: this.stop,
+      createAudioSession: this.createAudioSession,
+      addClip: this.addClip,
+      addClips: this.addClips,
+      isDownloadingClips: this.isDownloadingClips,
+      setSeekTime: this.setTime,
     };
-
-    if (this.props.clips.length) {
-      this.addClips(this.props.clips);
-    }
   }
 
   componentDidMount() {
@@ -47,33 +39,65 @@ export class AdioManagerProvider extends Component {
       'clipDownloadProgress',
       this.onClipDownloadProgress,
     );
-
     AdioManagerEvents.addListener('clipDownloaded', this.onClipDownload);
+    AdioManagerEvents.addListener(
+      'audioSessionStatusUpdated',
+      this.audioSessionStatusUpdated,
+    );
+
+    AdioManagerEvents.addListener('timeUpdated', this.timeUpdated);
+
+    this.createAudioSession();
   }
 
   componentWillUnmount() {
+    this.destroyAudioSession();
+
     AdioManagerEvents.removeListener(
       'clipDownloadProgress',
       this.onClipDownloadProgress,
     );
+
+    AdioManagerEvents.removeListener('clipDownloaded', this.onClipDownload);
+    AdioManagerEvents.removeListener(
+      'audioSessionStatusUpdated',
+      this.audioSessionStatusUpdated,
+    );
+
+    AdioManagerEvents.removeListener('timeUpdated', this.timeUpdated);
   }
+
+  timeUpdated = (time) => {
+    this.setState({ time });
+  };
+
+  audioSessionStatusUpdated = (audioSessionStatus) => {
+    this.setState(() => ({
+      audioSessionStatus,
+    }));
+  };
+
+  setTime = (time) => {
+    NativeAdioManager.setSeekTime(time);
+  };
 
   getState = () => {
     return this.state;
   };
 
   addClips = async (clips = []) => {
-    const addedClips = await NativeAdioManager.addClips(clips);
+    return await NativeAdioManager.addClips(clips);
+  };
 
-    this.setState((state) => {
-      return {
-        clips: [...state.clips, ...addedClips],
-      };
-    });
+  addClip = async (clip) => {
+    return await NativeAdioManager.addClip(clip);
+  };
+
+  isDownloadingClips = () => {
+    return Object.keys(this.state.downloadingClips).length > 0;
   };
 
   onClipDownload = (clip) => {
-    this.setState(updateClip(clip));
     this.setState((state) => {
       const { downloadingClips } = state;
 
@@ -103,12 +127,20 @@ export class AdioManagerProvider extends Component {
     });
   };
 
-  downloadClip = (id) => {
-    NativeAdioManager.downloadClip(id);
+  createAudioSession = async () => {
+    return await NativeAdioManager.createAudioSession();
   };
 
-  downloadAllClips = () => {
-    NativeAdioManager.downloadAllClips();
+  destroyAudioSession = async () => {
+    return await NativeAdioManager.destroyAudioSession();
+  };
+
+  play = () => {
+    NativeAdioManager.play();
+  };
+
+  stop = () => {
+    NativeAdioManager.stop();
   };
 
   render() {

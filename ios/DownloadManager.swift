@@ -11,17 +11,22 @@ import Foundation
 class DownloadManager {
   var downloadSession: URLSession!
   
-  var activeDownloads: [URL: Downlad] = [:]
+  var activeDownloads: [URL: Download] = [:]
   
   func startDownload(_ clip: Clip) {
-    let download = Downlad(clip)
+    if activeDownloads[clip.src] != nil {
+      activeDownloads[clip.src]?.clips.append(clip)
+      return
+    }
     
-    download.task = downloadSession.downloadTask(with: clip.src)
+    let download = Download(clip)
     
+//    download.task = downloadSession.downloadTask(with: clip.src)
+    download.task = downloadSession.downloadTask(with: download.src)
     download.task!.resume()
     
     download.isDownloading = true
     
-    activeDownloads[download.clip.src] = download
+    activeDownloads[download.src] = download
   }
 }
